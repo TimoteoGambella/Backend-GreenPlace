@@ -43,10 +43,9 @@ app.post("/api/getTypes",(req,res)=>{
     }else{
         res.json({response:"success",data:req.body.type==="inspirations"?typesOfInspirations:typesOfPlants,message:"Tipos encontrados"})
     }
-
 })
-app.post("/api/getAllPlants",(req,res)=>{
-    Plantas.find({}).then(doc=>{
+app.post("/api/getPlantsByType",(req,res)=>{
+    Plantas.find({type:req.body.type}).then(doc=>{
         res.json({response:"success",data:doc,message:"Todas las plantas"})
     })
     .catch(err=>{
@@ -55,6 +54,14 @@ app.post("/api/getAllPlants",(req,res)=>{
 })
 app.post("/api/getAllInspirations",(req,res)=>{
     Inspiraciones.find({}).then(doc=>{
+        res.json({response:"success",data:doc,message:"Todas las inspiraciones"})
+    })
+    .catch(err=>{
+        res.json({response:"failed",data:doc,message:"Error Base de Datos"})
+    })
+})
+app.post("/api/getInspirationsByType",(req,res)=>{
+    Inspiraciones.find({type:req.body.type}).then(doc=>{
         res.json({response:"success",data:doc,message:"Todas las inspiraciones"})
     })
     .catch(err=>{
