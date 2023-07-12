@@ -72,7 +72,7 @@ app.post("/api/getInspirationsByType",(req,res)=>{
 app.post("/api/getUser",(req,res)=>{
     let userId = CryptoJS.AES.decrypt(req.body.id, "clave_secreta").toString(CryptoJS.enc.Utf8)
 
-    Usuarios.find({_id:userId}
+    Usuarios.find({_id:userId})
         .then(doc=>{
             if(doc.length!==0){
                 res.json({response:"success",data:doc,message:"Usuario encontrado"})
@@ -83,11 +83,10 @@ app.post("/api/getUser",(req,res)=>{
         .catch(err=>{
             res.json({response:"failed",data:{}})
         })
-    )
 })
 app.post("/api/getUserByMail",(req,res)=>{
 
-    Usuarios.find({mail:req.body.mail}
+    Usuarios.find({mail:req.body.mail})
         .then(doc=>{
             if(doc.length!==0){
                 res.json({response:"success",data:doc,message:"Usuario encontrado"})
@@ -98,7 +97,6 @@ app.post("/api/getUserByMail",(req,res)=>{
         .catch(err=>{
             res.json({response:"failed",data:{}})
         })
-    )
 })
 
 app.post("/api/login", (req,res)=>{
