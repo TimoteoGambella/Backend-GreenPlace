@@ -29,9 +29,9 @@ connection.on("error", (error,res)=>{
     console.log("Error en la conexion a la BD:",error)
 })
 
-const Usuarios = require("./modals/modals")
-const Inspiraciones = require("./modals/modals")
-const Plantas = require("./modals/modals")
+const Usuarios = require("./modals/modalUsuarios")
+const Inspiraciones = require("./modals/modalInspiraciones")
+const Plantas = require("./modals/modalPlantas")
 
 
 app.post("/api/getTypes",(req,res)=>{
@@ -120,20 +120,6 @@ app.post("/api/login", (req,res)=>{
         res.json({response:"failed",data:{}})
     })
 })
-
-// app.get("/api/add", (req,res)=>{
-//     const ins = new Inspiraciones({
-//         title:"Terreno 8",
-//         type:"Terreno",
-//         photos:[
-//             "https://firebasestorage.googleapis.com/v0/b/greenplace-4f0e2.appspot.com/o/Inspiraciones%2Fterr8.jpg?alt=media&token=b329c57f-18ec-43af-92dc-0c20d653058f"
-//         ],
-//         description:"Exterior - decoración",    
-//     })
-//     ins.save().then(doc=>{
-//         res.json({response:"success",data:doc,message:"Usuario creado"})
-//     })
-// })
 
 app.post("/api/register", (req,res)=>{
     if(req.body.mail && req.body.password && req.body.username){
